@@ -61,11 +61,11 @@ const resendVerify = async(req, res)=> {
     const {email} = req.body;
     const user = await User.findOne({email});
     if(!user) {
-        throw HttpError(400, "Email invalid");
+        throw HttpError(404, "Email invalid");
     }
 
     if(user.verify) {
-        throw HttpError(400, "Email already verify");
+        throw HttpError(404, "Email already verify");
     }
 
     const verifyEmail = {
